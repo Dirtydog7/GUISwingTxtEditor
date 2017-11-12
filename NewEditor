@@ -1,0 +1,324 @@
+package edu.elkins;
+
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+
+public class NewEditor {
+
+	public static void main(String[] args) {
+		JFrame frame = new EditorFrame();
+		frame.pack();
+		frame.setVisible(true);
+	}
+
+}
+
+class EditorFrame extends JFrame {
+	private static final int WIDTH = 1280;
+	private static final int HEIGHT = 720;
+	private String title = "Editor";
+	private JMenuBar menubar = new EditorMenu();
+
+	TextControls textControlPanel = new TextControls();
+	JTextPane textPane = new JTextPane();
+	JPanel replacePane = new ReplaceEditor();
+
+	public EditorFrame() {
+		setTitle(title);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		setJMenuBar(menubar);
+		buildLayout();
+
+		setActions();
+
+		// setSize(WIDTH, HEIGHT);
+		setPreferredSize(new Dimension(WIDTH, HEIGHT));
+	}
+
+	private void buildLayout() {
+		Container pane = this.getContentPane();
+		pane.add(textControlPanel, BorderLayout.NORTH);
+		pane.add(textPane, BorderLayout.CENTER);
+		pane.add(replacePane, BorderLayout.SOUTH);
+
+	}
+
+	/*
+	 * Add listeners and make appropriate changes
+	 * 
+	 */
+	private void setActions() {
+
+		// Set the font type
+		textControlPanel.getFontList().addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+
+		// Set the font style to Bold
+		// https://docs.oracle.com/javase/7/docs/api/javax/swing/JCheckBox.html
+		textControlPanel.getBoldCheckBox().addItemListener(new ItemListener() {
+
+			@Override
+			public void itemStateChanged(ItemEvent event) {
+				// If the box is checked, we want to bold the text
+				boolean setBold = event.getStateChange() == ItemEvent.SELECTED;
+				Font font = textPane.getFont();
+				textPane.setFont(new Font(font.getName(), setBold ? Font.BOLD : Font.PLAIN, font.getSize()));
+
+			}
+		});
+		// Set the font style to Italic
+		textControlPanel.getBoldCheckBox().addItemListener(new ItemListener() {
+
+			@Override
+			public void itemStateChanged(ItemEvent event) {
+				// If the box is checked, we want to bold the text
+				boolean setItalic = event.getStateChange() == ItemEvent.SELECTED;
+				Font font = textPane.getFont();
+				textPane.setFont(new Font(font.getName(), setItalic ? Font.ITALIC : Font.PLAIN, font.getSize()));
+
+			}
+		});
+		// Set the font size
+
+	}
+}
+
+class ReplaceEditor extends JPanel {
+
+	// TODO: Create constants
+	private static final String REPLACE_LABEL = "Replace";
+	private static final int TEXT_FIELD_WIDTH = 10;
+
+	JButton replaceButton = new JButton(REPLACE_LABEL);
+	JTextField findField = new JTextField(TEXT_FIELD_WIDTH);
+	JTextField replacementField = new JTextField(TEXT_FIELD_WIDTH);
+
+	public ReplaceEditor() {
+		buildLayout();
+
+		// For debugging, to ensure layout is correct
+		// setBackground(Color.BLACK);
+	}
+
+	private void buildLayout() {
+		add(replaceButton);
+		add(findField);
+		add(new JLabel("with"));
+		add(replacementField);
+
+	}
+
+	public JButton getReplaceButton() {
+		return replaceButton;
+	}
+
+	public JTextField getFindField() {
+		return findField;
+	}
+
+	public JTextField getReplacementField() {
+		return replacementField;
+	}
+}
+
+class TextControls extends JPanel {
+
+	// TODO: Create constants
+
+	String[] fonts = { "Sans Serif", "Serif", "Monospaced", "Dialog", "Dialog Input" };
+	JComboBox<String> fontList = new JComboBox<String>(fonts);
+	JCheckBox boldCheckBox = new JCheckBox("Bold");
+	JCheckBox italicCheckBox = new JCheckBox("Italic");
+
+	JRadioButton smallRadioButton = new JRadioButton("Small");
+	JRadioButton mediumRadioButton = new JRadioButton("Medium");
+	JRadioButton largeRadioButton = new JRadioButton("Large");
+	ButtonGroup fontSizeGroup = new ButtonGroup();
+
+	public TextControls() {
+		setLayout(new BorderLayout());
+		buildLayout();
+
+		// For debugging, to ensure layout is correct
+		// setBackground(Color.BLACK);
+	}
+
+	private void buildLayout() {
+		JPanel top = new JPanel();
+
+		// For debugging, to ensure layout is correct
+		// top.setBackground(Color.RED);
+
+		top.add(fontList);
+		top.add(boldCheckBox);
+		top.add(italicCheckBox);
+		add(top, BorderLayout.NORTH);
+
+		JPanel bottom = new JPanel();
+
+		// For debugging, to ensure layout is correct
+		// bottom.setBackground(Color.BLUE);
+		bottom.add(smallRadioButton);
+		bottom.add(mediumRadioButton);
+		bottom.add(largeRadioButton);
+		add(bottom, BorderLayout.SOUTH);
+
+		fontSizeGroup.add(smallRadioButton);
+		fontSizeGroup.add(mediumRadioButton);
+		fontSizeGroup.add(largeRadioButton);
+	}
+
+	public JComboBox<String> getFontList() {
+		return fontList;
+	}
+
+	public void setFontList(JComboBox<String> fontList) {
+		this.fontList = fontList;
+	}
+
+	public JCheckBox getBoldCheckBox() {
+		return boldCheckBox;
+	}
+
+	public JCheckBox getItalicCheckBox() {
+		return italicCheckBox;
+	}
+
+	public JRadioButton getSmallRadioButton() {
+		return smallRadioButton;
+	}
+
+	public JRadioButton getMediumRadioButton() {
+		return mediumRadioButton;
+	}
+
+	public JRadioButton getLargeRadioButton() {
+		return largeRadioButton;
+	}
+
+	public ButtonGroup getFontSizeGroup() {
+		return fontSizeGroup;
+	}
+
+}
+
+class EditorMenu extends JMenuBar {
+	// Static Strings for labels
+	private static final String FILE_MENU_LABEL = "File";
+	private static final String EDIT_MENU_LABEL = "Edit";
+	private static final String OPEN_MENU_LABEL = "Open";
+	private static final String SAVE_MENU_LABEL = "Save";
+	private static final String SAVE_AS_MENU_LABEL = "Save As";
+	private static final String EXIT_MENU_LABEL = "Exit";
+	private static final String CUT_MENU_LABEL = "Cut";
+	private static final String COPY_MENU_LABEL = "Copy";
+	private static final String PASTE_MENU_LABEL = "Paste";
+
+	// Top level menus
+	private JMenu fileMenu;
+	private JMenu editMenu;
+
+	// File Menu Items
+	private JMenuItem openMenuItem = new JMenuItem(OPEN_MENU_LABEL);
+	private JMenuItem saveMenuItem = new JMenuItem(SAVE_MENU_LABEL);
+	private JMenuItem saveAsMenuItem = new JMenuItem(SAVE_AS_MENU_LABEL);
+
+	private JMenuItem exitMenuItem = new JMenuItem(EXIT_MENU_LABEL);
+	// Edit Menu Items
+	private JMenuItem cutMenuItem = new JMenuItem(CUT_MENU_LABEL);
+	private JMenuItem copyMenuItem = new JMenuItem(COPY_MENU_LABEL);
+	private JMenuItem pasteMenuItem = new JMenuItem(PASTE_MENU_LABEL);
+
+	/*
+	 * Default Constructor
+	 */
+	public EditorMenu() {
+		fileMenu = buildFileMenu();
+		editMenu = buildEditMenu();
+		add(fileMenu);
+		add(editMenu);
+	}
+
+	/*
+	 * Build File Menu
+	 */
+	public JMenu buildFileMenu() {
+		JMenu menu = new JMenu(FILE_MENU_LABEL);
+		menu.add(openMenuItem);
+		menu.add(saveMenuItem);
+		menu.add(saveAsMenuItem);
+		menu.addSeparator();
+		menu.add(exitMenuItem);
+		return menu;
+	}
+
+	/*
+	 * Build Edit Menu
+	 */
+	public JMenu buildEditMenu() {
+		JMenu menu = new JMenu(EDIT_MENU_LABEL);
+		menu.add(cutMenuItem);
+		menu.add(copyMenuItem);
+		menu.add(pasteMenuItem);
+
+		return menu;
+	}
+
+	public JMenu getFileMenu() {
+		return fileMenu;
+	}
+
+	public JMenu getEditMenu() {
+		return editMenu;
+	}
+
+	public JMenuItem getOpenMenuItem() {
+		return openMenuItem;
+	}
+
+	public JMenuItem getSaveMenuItem() {
+		return saveMenuItem;
+	}
+
+	public JMenuItem getSaveAsMenuItem() {
+		return saveAsMenuItem;
+	}
+
+	public JMenuItem getCutMenuItem() {
+		return cutMenuItem;
+	}
+
+	public JMenuItem getCopyMenuItem() {
+		return copyMenuItem;
+	}
+
+	public JMenuItem getPasteMenuItem() {
+		return pasteMenuItem;
+	}
+}
