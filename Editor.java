@@ -23,7 +23,7 @@ public class Editor {
 {
 	Private ButtonPanel bp = new ButtonPanel();
 private JMenu fileMenu = new JMenu("File");
-private JMenu colorMenu = new JMenu("Color");
+private JMenu editMenu = new JMenu("Edit");
 private JMenuItem openMenuItem = new JMenuItem("Open");
 private JMenuItem saveMenuItem = new JMenuItem("Save");
 private JMenuItem saveAsMenuItem = new JMenuItem("Save as");
@@ -40,7 +40,7 @@ publicMyMenuaBar()
 	FileMenu.add(exitMenuItem);
 	colorMenu.add(redMenuItem);
 	this.add(fileMenu):
-	this.add(colorMenu);
+	this.add(editMenu);
 
 	re.addActionListener ( e ->
 {
