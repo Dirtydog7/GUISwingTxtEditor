@@ -1,11 +1,14 @@
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Frame;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 
@@ -15,15 +18,20 @@ public class Editor {
 
 	public static void main(String[] args) {
 
-		JFrame frame = new ButtonFrame();
-		  frame.setVisible(true);
+		JFrame frame = new JFrame();
+		Frame.setJMenuBar(new MyMenuBar());
+		Frame.setVisible(true);
 	}
 
-}class MyMenuBar extends JMenuBar
+}
+class MyMenuBar extends JMenuBar
 {
+/**
+	 *
+	 */
 	private static final long serialVersionUID = 1L;
 
-	Private ButtonPanel bp = new ButtonPanel();
+	 ButtonPanel bp = new ButtonPanel();
 private JMenu fileMenu = new JMenu("File");
 private JMenu editMenu = new JMenu("Edit");
 private JMenuItem openMenuItem = new JMenuItem("Open");
