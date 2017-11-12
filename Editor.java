@@ -14,11 +14,44 @@ import javax.swing.JPanel;
 public class Editor {
 
 	public static void main(String[] args) {
-		
+
 		JFrame frame = new ButtonFrame();
 		  frame.setVisible(true);
 	}
 
+}class MyMenuBar extends JMenuBar
+{
+	Private ButtonPanel bp = new ButtonPanel();
+private JMenu fileMenu = new JMenu("File");
+private JMenu colorMenu = new JMenu("Color");
+private JMenuItem openMenuItem = new JMenuItem("Open");
+private JMenuItem saveMenuItem = new JMenuItem("Save");
+private JMenuItem saveAsMenuItem = new JMenuItem("Save as");
+private JMenuItem exitMenuItem = new JMenuItem("Exit");
+private JMenuItem redMenuItem = new JMenuItem("Red");
+public ButtonFrame()
+	{
+publicMyMenuaBar()
+{
+	FileMenu.add(openMenuItem);
+	FileMenu.add(saveMenuItem);
+	FileMenu.add(saveAsMenuItem);
+	FileMenu.add.Seperator();
+	FileMenu.add(exitMenuItem);
+	colorMenu.add(redMenuItem);
+	this.add(fileMenu):
+	this.add(colorMenu);
+
+	re.addActionListener ( e ->
+{
+		setBackground(Color.RED);
+		repaint();
+});
+	openMenuItem.addActionListener(e - >
+	{
+		System.out.println(ï¿½Open menu chosenï¿½);
+	});
+}
 }
 class ButtonPanel extends JPanel implements ActionListener
 {
@@ -57,7 +90,7 @@ class ButtonPanel extends JPanel implements ActionListener
 
 class ButtonFrame extends JFrame
 {
-   
+
 	private static final long serialVersionUID = 1L;
 
 	public ButtonFrame()
@@ -71,14 +104,14 @@ class ButtonFrame extends JFrame
 
 /*class MyMenuBar extends JMenuBar
 {
-	Private ButtonPanel bp = new ButtonPanel();	
-private JMenu fileMenu = new JMenu(“File”); 
-private JMenu colorMenu = new JMenu(“Color”);
-private JMenuItem openMenuItem = new JMenuItem(“Open”);
-private JMenuItem saveMenuItem = new JMenuItem(“Save”);
-private JMenuItem saveAsMenuItem = new JMenuItem(“Save as”);
-private JMenuItem exitMenuItem = new JMenuItem(“Exit”);
-private JMenuItem redMenuItem = new JMenuItem(“Red”);
+	Private ButtonPanel bp = new ButtonPanel();
+private JMenu fileMenu = new JMenu(ï¿½Fileï¿½);
+private JMenu colorMenu = new JMenu(ï¿½Colorï¿½);
+private JMenuItem openMenuItem = new JMenuItem(ï¿½Openï¿½);
+private JMenuItem saveMenuItem = new JMenuItem(ï¿½Saveï¿½);
+private JMenuItem saveAsMenuItem = new JMenuItem(ï¿½Save asï¿½);
+private JMenuItem exitMenuItem = new JMenuItem(ï¿½Exitï¿½);
+private JMenuItem redMenuItem = new JMenuItem(ï¿½Redï¿½);
 public ButtonFrame()
 	{
 publicMyMenuaBar()
@@ -91,7 +124,7 @@ publicMyMenuaBar()
 	colorMenu.add(redMenuItem);
 	this.add(fileMenu):
 	this.add(colorMenu);
-	
+
 	re.addActionListener ( e ->
 {
 		setBackground(Color.RED);
@@ -99,7 +132,7 @@ publicMyMenuaBar()
 });
 	openMenuItem.addActionListener(e - >
 	{
-		System.out.println(“Open menu chosen”);
+		System.out.println(ï¿½Open menu chosenï¿½);
 	});
 }
 }
@@ -124,7 +157,7 @@ Frame.setVisible(true);
 Class ButtonFrame extends JFrame
 [
 	This.setJMenuBar(new MyMenuBar());
-	setTitle(“ButtonTest”);
+	setTitle(ï¿½ButtonTestï¿½);
 	setSize(300, 200);
 	setDefaultCloseOperation(JFrame.Exit_on_Close);
 	this.add(new ButtonPanel());
@@ -139,14 +172,14 @@ Class ButtonFrame extends JFrame
 //Replacing method
 
 Public String replaceFirst(String regex, String replacement)
-{	
-String s = “This is my exciting string”;
-s = s.replaceFirst(“exciting” , “wonderful”);
+{
+String s = ï¿½This is my exciting stringï¿½;
+s = s.replaceFirst(ï¿½excitingï¿½ , ï¿½wonderfulï¿½);
 System.out.println(s);
 }
 
-//COMBO BOX 
- 
+//COMBO BOX
+
  import java.awt.BorderLayout;
 import java.awt.Font;
 import javax.swing.JComboBox;
@@ -182,7 +215,7 @@ public class ComboBoxFrame extends JFrame
 
       faceCombo.addActionListener(event ->
          label.setFont(
-            new Font(faceCombo.getItemAt(faceCombo.getSelectedIndex()), 
+            new Font(faceCombo.getItemAt(faceCombo.getSelectedIndex()),
                Font.PLAIN, DEFAULT_SIZE)));
 
       // add combo box to a panel at the frame's southern border
@@ -206,7 +239,7 @@ public class Lab2 {
 	public static void main(String[] args){
 		JPanel p = new JPanel(new BorderLayout());
 		p.setLayout(new BoxLayout(p, BoxLayout.PAGE_AXIS));
-		
+
 	}
 }
 
@@ -223,7 +256,7 @@ public class Lab2 {
 //labeling the faceCombo Box
 //public ComboBoxFrame()
 //{
-  
+
 
   // label = new JLabel("The quick brown fox jumps over the lazy dog.");
    //label.setFont(new Font("Serif", Font.PLAIN, DEFAULT_SIZE));
@@ -244,4 +277,3 @@ public class Lab2 {
 //jpanel south with JCenter button jtextarea jlabel jtextarea
 
  */
-
