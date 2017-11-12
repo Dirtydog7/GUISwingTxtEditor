@@ -21,6 +21,8 @@ public class Editor {
 
 }class MyMenuBar extends JMenuBar
 {
+	private static final long serialVersionUID = 1L;
+
 	Private ButtonPanel bp = new ButtonPanel();
 private JMenu fileMenu = new JMenu("File");
 private JMenu editMenu = new JMenu("Edit");
@@ -29,16 +31,16 @@ private JMenuItem saveMenuItem = new JMenuItem("Save");
 private JMenuItem saveAsMenuItem = new JMenuItem("Save as");
 private JMenuItem exitMenuItem = new JMenuItem("Exit");
 private JMenuItem redMenuItem = new JMenuItem("Red");
-public ButtonFrame()
+public void ButtonFrame()
 	{
-publicMyMenuaBar()
+void publicMyMenuaBar()
 {
-	FileMenu.add(openMenuItem);
-	FileMenu.add(saveMenuItem);
-	FileMenu.add(saveAsMenuItem);
-	FileMenu.add.Seperator();
-	FileMenu.add(exitMenuItem);
-	colorMenu.add(redMenuItem);
+	fileMenu.add(openMenuItem);
+	fileMenu.add(saveMenuItem);
+	fileMenu.add(saveAsMenuItem);
+	fileMenu.add.Seperator();
+	fileMenu.add(exitMenuItem);
+	editMenu.add(redMenuItem);
 	this.add(fileMenu):
 	this.add(editMenu);
 
@@ -49,7 +51,7 @@ publicMyMenuaBar()
 });
 	openMenuItem.addActionListener(e - >
 	{
-		System.out.println(�Open menu chosen�);
+		System.out.println("Open menu chosen");
 	});
 }
 }
