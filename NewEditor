@@ -40,8 +40,6 @@ class EditorFrame extends JFrame {
 	private EditorMenu menubar = new EditorMenu();
 
 	TextControls textControlPanel = new TextControls();
-	
-	//TODO: Put scrolling text pan here
 	JTextPane textPane = new JTextPane();
 	JPanel replacePane = new ReplaceEditor();
 
@@ -89,17 +87,9 @@ class EditorFrame extends JFrame {
 			public void itemStateChanged(ItemEvent event) {
 				// If the box is checked, we want to bold the text
 				boolean setBold = event.getStateChange() == ItemEvent.SELECTED;
-				// Should we set the font to bold?
-				// Ternary to set boldConstant
-				// boldConstant = setBold ? Font.BOLD : Font.PLAIN;
-				int boldConstant = Font.PLAIN;
-				if(setBold) {
-					boldConstant = Font.BOLD;
-				}
 				Font font = textPane.getFont();
-				// textPane.setFont(new Font(font.getName(), setBold ? Font.BOLD : Font.PLAIN, font.getSize()));
-				textPane.setFont(new Font(font.getName(), boldConstant, font.getSize()));
-				
+				textPane.setFont(new Font(font.getName(), setBold ? Font.BOLD : Font.PLAIN, font.getSize()));
+
 			}
 		});
 		// Set the font style to Italic
@@ -115,6 +105,19 @@ class EditorFrame extends JFrame {
 			}
 		});
 		// Set the font size
+		
+		
+		//Save the file
+		
+		menubar.getSaveMenuItem().addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent event) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 
 	}
 }
@@ -331,4 +334,5 @@ class EditorMenu extends JMenuBar {
 	public JMenuItem getPasteMenuItem() {
 		return pasteMenuItem;
 	}
+	
 }
