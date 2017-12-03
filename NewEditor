@@ -37,7 +37,7 @@ class EditorFrame extends JFrame {
 	private static final int WIDTH = 1280;
 	private static final int HEIGHT = 720;
 	private String title = "Editor";
-	private JMenuBar menubar = new EditorMenu();
+	private EditorMenu menubar = new EditorMenu();
 
 	TextControls textControlPanel = new TextControls();
 	
